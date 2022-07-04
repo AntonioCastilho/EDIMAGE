@@ -1,2 +1,112 @@
-Label:
-    text: 'Olá mundo'
+// variaveis para configurar cores
+#: set cor_texto .57, .57, .57, 1
+#: set cor_fundo .92, .92, .92, 1
+#: set cor_borda .80, .80, .80, 1
+#: set cor_botao .65, .65, .65, 1
+#: set cor_botao_azul .23, .41, .78, 1
+#: set cor_botao_laranja .93, .52, .31, 1
+
+<BoxLayoutR@BoxLayout>:
+<BoxLayoutG@BoxLayout>:
+<BoxLayoutB@BoxLayout>:
+
+<TelaInicial@Screen>:
+
+    BoxLayoutR:
+        padding: 15
+        BoxLayoutG:
+            orientation: 'vertical'
+            canvas.before:
+                Color:
+                    rgba: cor_borda
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: 5, 5, 5, 5
+                Color:
+                    rgba: cor_fundo
+                RoundedRectangle:
+                    size: self.size[0] - 12, self.size[1] - 12
+                    pos: self.pos[0] + 6, self.pos[1] +6
+            BoxLayout:
+                Image:
+                    source: 'Icones\ck8.png'
+                    size_hint: 1, .4    
+            Label:
+                color: cor_texto
+                text: '[b]Arraste a imagem para cá'
+                font_size: 22
+                markup: True
+                halign: 'center'
+                valign: 'top'
+                text_size: self.size
+
+
+<TelaEdicao@Screen>:
+    BoxLayout:
+        padding: 15
+        BoxLayout:
+        orientation: 'vertical'
+            BoxLayout:
+            size_hint: 1, None
+            height: 100
+                Button:
+                    background_down: ''
+                    background_normal: ''
+                    background_color: cor_botao
+                    on_press: self.background_color = cor_botao_laranja
+                    on_release: self.background_color = cor_botao
+                    Image:
+                        source: 'Icones/bt1.png'
+                        x: self.parent.center_x - 32
+                        y: self.parent.center_y - 32
+                        size_hint: None, None
+                        width: 64
+                        height: 64
+
+                Button:
+                    background_down: ''
+                    background_normal: ''
+                    background_color: cor_botao
+                    on_press: self.background_color = cor_botao_laranja
+                    on_release: self.background_color = cor_botao
+                    Image:
+                        source: 'Icones/bt1.png'
+                        x: self.parent.center_x - 32
+                        y: self.parent.center_y - 32
+                        size_hint: None, None
+                        width: 64
+                        height: 64
+
+                Button:
+                    background_down: ''
+                    background_normal: ''
+                    background_color: cor_botao
+                    on_press: self.background_color = cor_botao_laranja
+                    on_release: self.background_color = cor_botao
+                    Image:
+                        source: 'Icones/bt1.png'
+                        x: self.parent.center_x - 32
+                        y: self.parent.center_y - 32
+                        size_hint: None, None
+                        width: 64
+                        height: 64
+
+            BoxLayout:
+                Image:
+                    source: 'Imagens\esq.png'
+            BoxLayout:
+                size_hint: 1, None
+                height: 100
+                Button:
+                    text: 'Cancelar'
+                Button:
+                    text: 'Salvar'
+
+
+
+TelaEdicao:
+
+
+
+
