@@ -1,4 +1,4 @@
-// variaveis para configurar cores
+
 #: set cor_texto .57, .57, .57, 1
 #: set cor_fundo .92, .92, .92, 1
 #: set cor_borda .80, .80, .80, 1
@@ -6,15 +6,35 @@
 #: set cor_botao_azul .23, .41, .78, 1
 #: set cor_botao_laranja .93, .52, .31, 1
 
-<BoxLayoutR@BoxLayout>:
-<BoxLayoutG@BoxLayout>:
-<BoxLayoutB@BoxLayout>:
 
-<TelaInicial@Screen>:
 
-    BoxLayoutR:
+<BotaoCancelarSalvar@Button>:
+    background_down: ''
+    background_normal: ''
+    background_color: cor_botao 
+    font_size: 25
+    on_press: self.background_color = cor_botao_laranja
+    on_release: self.background_color = cor_botao
+  
+<BotaoEdicao@Button>:
+    nome_imagem: ''
+    background_down: ''
+    background_normal: ''
+    background_color: cor_botao
+    on_press: self.background_color = cor_botao_laranja
+    on_release: self.background_color = cor_botao
+    Image:
+        source: 'Icones/' + self.parent.nome_imagem
+        x: self.parent.center_x - 32
+        y: self.parent.center_y - 32
+        size_hint: None, None
+        width: 64
+        height: 64
+
+<TelaInicial>:
+    BoxLayout:
         padding: 15
-        BoxLayoutG:
+        BoxLayout:
             orientation: 'vertical'
             canvas.before:
                 Color:
@@ -33,6 +53,7 @@
                     source: 'Icones\ck8.png'
                     size_hint: 1, .4    
             Label:
+                id: mensagem
                 color: cor_texto
                 text: '[b]Arraste a imagem para cá'
                 font_size: 22
@@ -42,70 +63,45 @@
                 text_size: self.size
 
 
-<TelaEdicao@Screen>:
+<TelaEdicao>:
     BoxLayout:
         padding: 15
         BoxLayout:
-        orientation: 'vertical'
-            BoxLayout:
-            size_hint: 1, None
-            height: 100
-                Button:
-                    background_down: ''
-                    background_normal: ''
-                    background_color: cor_botao
-                    on_press: self.background_color = cor_botao_laranja
-                    on_release: self.background_color = cor_botao
-                    Image:
-                        source: 'Icones/bt1.png'
-                        x: self.parent.center_x - 32
-                        y: self.parent.center_y - 32
-                        size_hint: None, None
-                        width: 64
-                        height: 64
-
-                Button:
-                    background_down: ''
-                    background_normal: ''
-                    background_color: cor_botao
-                    on_press: self.background_color = cor_botao_laranja
-                    on_release: self.background_color = cor_botao
-                    Image:
-                        source: 'Icones/bt1.png'
-                        x: self.parent.center_x - 32
-                        y: self.parent.center_y - 32
-                        size_hint: None, None
-                        width: 64
-                        height: 64
-
-                Button:
-                    background_down: ''
-                    background_normal: ''
-                    background_color: cor_botao
-                    on_press: self.background_color = cor_botao_laranja
-                    on_release: self.background_color = cor_botao
-                    Image:
-                        source: 'Icones/bt1.png'
-                        x: self.parent.center_x - 32
-                        y: self.parent.center_y - 32
-                        size_hint: None, None
-                        width: 64
-                        height: 64
-
-            BoxLayout:
-                Image:
-                    source: 'Imagens\esq.png'
+            orientation: 'vertical'
             BoxLayout:
                 size_hint: 1, None
                 height: 100
-                Button:
+                spacing: 5
+                BotaoEdicao:
+                    nome_imagem: 'bt1.png'
+                    on_release: root.bt_girar_anti_horario()
+
+                BotaoEdicao:
+                    nome_imagem: 'bt2.png'
+                    on_release: root.bt_girar_horario()
+                BotaoEdicao:
+                    nome_imagem: 'bt3.png'
+                    on_release: root.bt_pb()
+            Widget:
+                size_hint: 1, None
+                height: 10
+            BoxLayout:
+                id: area_imagem
+            Widget:
+                size_hint: 1, None
+                height: 10
+            BoxLayout:
+                size_hint: 1, None
+                height: 100
+                spacing: 5
+                BotaoCancelarSalvar:
                     text: 'Cancelar'
-                Button:
+                    on_release: root.bt_cancelar()
+                BotaoCancelarSalvar:
                     text: 'Salvar'
+                    on_release: root.bt_cancelar()
 
 
-
-TelaEdicao:
 
 
 
